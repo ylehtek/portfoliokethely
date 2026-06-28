@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kethely Fernandes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0C0C0C;
+  --white: #F2EFE9;
+  --white2: #E8E4DC;
+  --navy: #1A2744;
+  --navy-mid: #243360;
+  --gray: #9A9490;
+  --gray-dim: #C8C4BC;
+  --line: #2A2A2A;
+  --line-light: #D4D0C8;
+  --play: 'Playfair Display', serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --body: 'IBM Plex Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 56px;
+  background: var(--black); border-bottom: 1px solid var(--line);
+}
+.nav-id { display: flex; align-items: center; gap: 14px; }
+.nav-box {
+  width: 30px; height: 30px; border: 1px solid #444;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 10px; color: #666; letter-spacing: .04em;
+}
+.nav-name { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-status { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--gray); }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4CAF7D; animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  grid-template-rows: 1fr auto;
+  border-bottom: 1px solid var(--line);
+  padding-top: 56px;
+}
+.hero-main {
+  grid-column: 1; grid-row: 1;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 64px 48px 56px;
+}
+.hero-aside {
+  grid-column: 2; grid-row: 1 / 3;
+  background: var(--navy);
+  border-left: 1px solid rgba(255,255,255,.06);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 48px 36px;
+}
+.hero-aside-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 36px;
+}
+.hero-stat { margin-bottom: 28px; }
+.hero-stat-num {
+  font-family: var(--play); font-size: 52px; line-height: 1;
+  color: var(--white); font-style: italic; margin-bottom: 4px;
+}
+.hero-stat-desc {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.35); line-height: 1.5;
+}
+.hero-divider { width: 20px; height: 1px; background: rgba(255,255,255,.15); margin-bottom: 28px; }
+
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--navy-mid); margin-bottom: 20px;
+}
+.hero-name {
+  font-family: var(--play);
+  font-size: clamp(58px, 8vw, 112px);
+  line-height: .95; letter-spacing: -.02em;
+  margin-bottom: 36px;
+}
+.hero-name em { display: block; font-style: italic; color: var(--white2); }
+.hero-tagline {
+  max-width: 500px; font-size: 16px; line-height: 1.85;
+  color: var(--gray); font-weight: 300; margin-bottom: 44px;
+}
+.hero-tagline strong { color: var(--white); font-weight: 500; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn-fill {
+  background: var(--white); color: var(--black);
+  padding: 12px 26px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  border: 1px solid var(--white); transition: background .2s, border-color .2s, color .2s;
+}
+.btn-fill:hover { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.btn-line {
+  border: 1px solid var(--line); color: var(--gray);
+  padding: 12px 26px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.btn-line:hover { border-color: #555; color: var(--white); }
+
+.hero-bar {
+  grid-column: 1; grid-row: 2;
+  border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+}
+.hero-bar-item {
+  padding: 18px 0 18px 48px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gray);
+  border-right: 1px solid var(--line);
+}
+.hero-bar-item:last-child { border-right: none; }
+
+#manifesto {
+  padding: 72px 48px;
+  background: var(--white); color: var(--black);
+  border-bottom: 1px solid var(--line-light);
+  position: relative; overflow: hidden;
+}
+#manifesto::before {
+  content: '\201C';
+  position: absolute; font-family: var(--play); font-size: 500px; line-height: .75;
+  color: rgba(0,0,0,.04); top: -60px; left: 20px;
+  pointer-events: none; font-style: italic;
+}
+.manifesto-grid {
+  display: grid; grid-template-columns: 180px 1fr; gap: 56px;
+  align-items: center; position: relative; z-index: 1;
+}
+.manifesto-side {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: #999; line-height: 2;
+}
+.manifesto-text {
+  font-family: var(--play); font-size: clamp(20px, 2.6vw, 34px);
+  line-height: 1.4; color: var(--black);
+}
+.manifesto-text strong { color: var(--navy); }
+.manifesto-text em { font-style: italic; }
+
+#cases { padding: 88px 48px; border-bottom: 1px solid var(--line); }
+.cases-top {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+  align-items: end; padding-bottom: 56px; border-bottom: 1px solid var(--line);
+  margin-bottom: 72px;
+}
+.section-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--gray); margin-bottom: 16px;
+}
+.cases-title {
+  font-family: var(--play); font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.05; letter-spacing: -.02em;
+}
+.cases-title em { font-style: italic; color: var(--gray); }
+.cases-desc { font-size: 15px; line-height: 1.85; color: var(--gray); font-weight: 300; }
+.cases-desc strong { color: var(--white); font-weight: 500; }
+
+.case-block { margin-bottom: 72px; }
+.case-block:last-child { margin-bottom: 0; }
+
+.case-header {
+  display: flex; align-items: center; gap: 18px;
+  padding-bottom: 20px; border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+}
+.case-num { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--gray); }
+.case-name { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); flex: 1; }
+.badge {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .1em;
+  text-transform: uppercase; padding: 5px 12px;
+}
+.badge-award { background: var(--navy); color: var(--white); }
+.badge-academic { border: 1px solid var(--line); color: var(--gray); }
+
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+
+.case-img-wrap { position: relative; }
+.case-img {
+  width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--navy);
+}
+.case-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block; transition: transform .4s ease;
+}
+.case-img:hover img { transform: scale(1.02); }
+.case-img-tag {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gray); margin-top: 10px;
+}
+
+.case-title {
+  font-family: var(--play); font-size: clamp(26px, 3.2vw, 44px);
+  line-height: 1.1; letter-spacing: -.01em; margin-bottom: 6px;
+}
+.case-title em { font-style: italic; color: var(--gray); }
+.case-brand {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--navy-mid); margin-bottom: 28px;
+}
+.case-section { margin-bottom: 22px; }
+.case-section-title {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .16em;
+  text-transform: uppercase; color: #555; margin-bottom: 8px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+.case-text { font-size: 15px; line-height: 1.8; color: rgba(242,239,233,.65); font-weight: 300; }
+
+.case-result {
+  margin-top: 28px; padding: 18px 22px;
+  border: 1px solid rgba(36,51,96,.6);
+  background: rgba(26,39,68,.25);
+}
+.case-result-title {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--navy-mid); margin-bottom: 6px;
+}
+.case-result-text { font-size: 14px; line-height: 1.7; color: var(--white); font-weight: 400; }
+
+#numeros {
+  background: var(--white); color: var(--black);
+  padding: 72px 48px; border-bottom: 4px solid var(--black);
+}
+.numeros-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 24px; border-bottom: 1px solid var(--line-light); margin-bottom: 56px;
+}
+.numeros-heading { font-family: var(--play); font-size: 28px; font-style: italic; }
+.numeros-note { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #bbb; }
+.numeros-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+.num-col { padding-right: 36px; border-right: 1px solid var(--line-light); }
+.num-col:last-child { border-right: none; padding-right: 0; }
+.num-col + .num-col { padding-left: 36px; }
+.num-val { font-family: var(--play); font-size: clamp(44px,5.5vw,76px); line-height: 1; font-style: italic; margin-bottom: 10px; }
+.num-desc { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #999; line-height: 1.6; }
+
+#trajetoria { padding: 88px 48px; border-bottom: 1px solid var(--line); }
+.traj-layout { display: grid; grid-template-columns: 280px 1fr; gap: 56px; }
+.traj-left { position: sticky; top: 72px; padding-bottom: 32px; }
+.traj-left-title { font-family: var(--play); font-size: clamp(32px,4vw,50px); line-height: 1.05; letter-spacing: -.02em; margin-bottom: 20px; }
+.traj-left-title em { font-style: italic; color: var(--gray); }
+.traj-left-text { font-size: 14px; line-height: 1.85; color: var(--gray); font-weight: 300; }
+.traj-left-text strong { color: var(--white); font-weight: 500; }
+
+.traj-list { display: flex; flex-direction: column; }
+.traj-row {
+  display: grid; grid-template-columns: 150px 1fr;
+  padding: 26px 0; border-bottom: 1px solid var(--line);
+  transition: background .15s;
+}
+.traj-row:first-child { border-top: 1px solid var(--line); }
+.traj-period { padding-right: 20px; }
+.traj-period-text { font-family: var(--mono); font-size: 10px; letter-spacing: .07em; text-transform: uppercase; color: var(--gray); line-height: 1.5; margin-bottom: 4px; }
+.traj-company { font-family: var(--mono); font-size: 10px; font-weight: 500; color: rgba(255,255,255,.35); letter-spacing: .04em; }
+.traj-role { font-family: var(--play); font-size: 19px; color: var(--white); margin-bottom: 10px; }
+.traj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.traj-tag {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .09em;
+  text-transform: uppercase; padding: 3px 9px;
+  border: 1px solid var(--line); color: rgba(255,255,255,.28);
+  transition: border-color .2s, color .2s;
+}
+.traj-row:hover .traj-tag { border-color: rgba(255,255,255,.12); color: rgba(255,255,255,.45); }
+
+#skills { background: var(--navy); padding: 88px 48px; }
+.skills-layout { display: grid; grid-template-columns: 260px 1fr; gap: 72px; }
+.skills-left-title { font-family: var(--play); font-size: clamp(28px,3.5vw,44px); line-height: 1.1; letter-spacing: -.02em; margin-bottom: 20px; }
+.skills-left-title em { font-style: italic; color: rgba(255,255,255,.35); }
+.skills-left-text { font-size: 14px; line-height: 1.85; color: rgba(255,255,255,.35); font-weight: 300; }
+.skills-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 36px; }
+.skill-group-title {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(255,255,255,.28);
+  margin-bottom: 20px; padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.skill-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.skill-row:last-child { border-bottom: none; }
+.skill-name { font-size: 13px; color: rgba(255,255,255,.65); font-weight: 300; }
+.skill-dots { display: flex; gap: 4px; }
+.dot { width: 5px; height: 5px; border-radius: 50%; }
+.dot.on { background: rgba(255,255,255,.65); }
+.dot.off { background: rgba(255,255,255,.1); }
+
+#formacao { padding: 88px 48px; border-top: 1px solid var(--line); }
+.form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+.form-title { font-family: var(--play); font-size: clamp(28px,3.5vw,44px); line-height: 1.05; letter-spacing: -.02em; margin-bottom: 40px; }
+.form-title em { font-style: italic; color: var(--gray); }
+.form-entry { padding: 22px 0; border-bottom: 1px solid var(--line); }
+.form-entry:first-of-type { border-top: 1px solid var(--line); }
+.form-course { font-family: var(--play); font-size: 17px; color: var(--white); margin-bottom: 4px; }
+.form-school { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy-mid); margin-bottom: 4px; }
+.form-period { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--gray); }
+.aside-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--gray);
+  margin-bottom: 16px; margin-top: 36px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.aside-label:first-child { margin-top: 0; }
+.lang-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.lang-name { font-size: 14px; color: var(--white); font-weight: 300; }
+.lang-level { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--navy-mid); }
+.cert-row { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--gray); padding: 9px 0; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
+.cert-row::before { content: '+'; color: var(--navy-mid); }
+
+#contato { background: var(--white); color: var(--black); padding: 88px 48px; }
+.contato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.contato-heading { font-family: var(--play); font-size: clamp(44px,6.5vw,88px); line-height: .95; letter-spacing: -.03em; }
+.contato-heading em { font-style: italic; color: #bbb; }
+.contato-heading strong { display: block; color: var(--navy); }
+.contato-links { display: flex; flex-direction: column; }
+.contato-link {
+  display: flex; align-items: center; justify-content: space-between;
+  color: var(--black); text-decoration: none;
+  padding: 20px 0; border-bottom: 1px solid var(--line-light);
+  transition: padding-left .2s;
+}
+.contato-link:first-child { border-top: 1px solid var(--line-light); }
+.contato-link:hover { padding-left: 6px; }
+.contato-link:hover .link-arrow { color: var(--navy); }
+.link-meta {}
+.link-label { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: #bbb; margin-bottom: 3px; }
+.link-value { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; color: var(--black); }
+.link-arrow { font-size: 18px; color: #ccc; transition: color .2s; }
+
+footer {
+  background: var(--black); padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--line);
+}
+.footer-copy { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: #444; }
+.footer-sig { font-family: var(--play); font-size: 16px; font-style: italic; color: #444; }
+
+.r { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+.r.on { opacity: 1; transform: none; }
+.r.d1 { transition-delay: .1s; }
+.r.d2 { transition-delay: .2s; }
+
+@media (max-width: 960px) {
+  nav { padding: 0 20px; }
+  .nav-links, .nav-status { display: none; }
+  #hero { grid-template-columns: 1fr; grid-template-rows: auto auto auto; padding-top: 56px; }
+  .hero-main { grid-column: 1; grid-row: 1; padding: 48px 20px 40px; }
+  .hero-aside { grid-column: 1; grid-row: 2; border-left: none; border-top: 1px solid rgba(255,255,255,.06); flex-direction: row; flex-wrap: wrap; gap: 20px; padding: 28px 20px; }
+  .hero-aside-label { display: none; }
+  .hero-divider { display: none; }
+  .hero-stat { margin-bottom: 0; flex: 1; min-width: 100px; }
+  .hero-stat-num { font-size: 36px; }
+  .hero-bar { grid-column: 1; grid-row: 3; grid-template-columns: 1fr; }
+  .hero-bar-item { padding-left: 20px; border-right: none; border-bottom: 1px solid var(--line); }
+  #manifesto, #cases, #numeros, #trajetoria, #skills, #formacao, #contato, footer { padding-left: 20px; padding-right: 20px; }
+  .manifesto-grid, .cases-top, .case-grid, .numeros-grid, .traj-layout, .skills-layout, .form-layout, .contato-grid { grid-template-columns: 1fr; gap: 32px; }
+  .numeros-grid { gap: 0; }
+  .num-col { border-right: none; border-bottom: 1px solid var(--line-light); padding: 20px 0 !important; }
+  .num-col:last-child { border-bottom: none; }
+  .traj-left { position: static; }
+  .traj-row { grid-template-columns: 1fr; }
+  .traj-period { margin-bottom: 8px; }
+  .skills-cols { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-id">
+    <div class="nav-box">KF</div>
+    <span class="nav-name">Kethely Fernandes</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#trajetoria">Trajetória</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    Disponível para propostas
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-main">
+    <div class="hero-eyebrow">CRM &amp; Marketing Digital · São Paulo</div>
+    <h1 class="hero-name">
+      Kethely<br>
+      <em>Fernandes</em>
+    </h1>
+    <p class="hero-tagline">
+      Não vejo conteúdo como volume —
+      <strong>vejo como canal de aquisição.</strong><br>
+      Não vejo CRM como disparo —
+      <strong>vejo como retenção que gera receita.</strong>
+    </p>
+    <div class="hero-ctas">
+      <a href="#cases" class="btn-fill">Ver cases</a>
+      <a href="#contato" class="btn-line">Entrar em contato</a>
+    </div>
+  </div>
+
+  <div class="hero-aside">
+    <div class="hero-aside-label">Em números</div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">450+</div>
+      <div class="hero-stat-desc">pessoas capacitadas<br>em treinamentos</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">30+</div>
+      <div class="hero-stat-desc">treinamentos<br>conduzidos</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">80+</div>
+      <div class="hero-stat-desc">disparos mensais<br>de CRM</div>
+    </div>
+  </div>
+
+  <div class="hero-bar">
+    <div class="hero-bar-item">SEO &amp; Conteúdo</div>
+    <div class="hero-bar-item">CRM &amp; Automação</div>
+    <div class="hero-bar-item">Performance &amp; Mídia Paga</div>
+  </div>
+</section>
+
+<div id="manifesto">
+  <div class="manifesto-grid">
+    <div class="manifesto-side">forma de<br>pensar<br>estratégia</div>
+    <blockquote class="manifesto-text">
+      "Conectar <strong>estratégia, dados e execução</strong> para transformar
+      conteúdo em tráfego qualificado — e comunicação em <em>conversão.</em>"
+    </blockquote>
+  </div>
+</div>
+
+<section id="cases">
+  <div class="cases-top r">
+    <div>
+      <div class="section-label">Projetos selecionados</div>
+      <h2 class="cases-title">O que foi<br><em>construído.</em></h2>
+    </div>
+    <p class="cases-desc">
+      Dois projetos que mostram como criatividade e estratégia andam juntas.
+      <strong>Um foi até Cannes.</strong> O outro ficou no portfólio da faculdade,
+      mas já dava sinais do que estava por vir.
+    </p>
+  </div>
+
+  <div class="case-block r">
+    <div class="case-header">
+      <span class="case-num">01 /</span>
+      <span class="case-name">Veja AdCleaner no Spotify</span>
+      <span class="badge badge-award">Semi-finalista · Perifa em Cannes 2024</span>
+    </div>
+    <div class="case-grid">
+      <div class="case-img-wrap">
+        <div class="case-img">
+          <img src="adcleaner.png" alt="Veja AdCleaner no Spotify"/>
+        </div>
+        <div class="case-img-tag">Veja Multiuso · Perifa em Cannes · 2024</div>
+      </div>
+      <div>
+        <h3 class="case-title">Veja <em>AdCleaner</em><br>no Spotify</h3>
+        <div class="case-brand">Veja Multiuso · Concurso Perifa em Cannes</div>
+        <div class="case-section">
+          <div class="case-section-title">O insight</div>
+          <p class="case-text">Metade dos jovens da periferia não assina streaming de música — o que gera interrupções de anúncio exatamente na hora da faxina. E se a Veja "limpasse" esses anúncios também?</p>
+        </div>
+        <div class="case-section">
+          <div class="case-section-title">A ideia</div>
+          <p class="case-text">Cada embalagem de Veja Multiuso daria uma semana de acesso ao AdCleaner no Spotify, removendo anúncios e ativando playlists exclusivas com MC Ryan SP, Mano Brown e Gloria Groove.</p>
+        </div>
+        <div class="case-section">
+          <div class="case-section-title">A execução</div>
+          <p class="case-text">Cupom fiscal cadastrado no site ativa o AdCleaner. Na troca de faixas, o usuário recebe micro-alertas dos artistas lembrando que a Veja continua limpando — a interrupção vira momento de marca.</p>
+        </div>
+        <div class="case-result">
+          <div class="case-result-title">Resultado</div>
+          <div class="case-result-text">Semi-finalista no <strong>Perifa em Cannes 2024</strong> — braço do maior festival de criatividade do mundo voltado para talentos da periferia brasileira.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-block r">
+    <div class="case-header">
+      <span class="case-num">02 /</span>
+      <span class="case-name">PlayStation no BBB</span>
+      <span class="badge badge-academic">Projeto Acadêmico · Publicidade &amp; Propaganda</span>
+    </div>
+    <div class="case-grid">
+      <div class="case-img-wrap">
+        <div class="case-img">
+          <img src="playstation-bbb.png" alt="PlayStation no Big Brother Brasil"/>
+        </div>
+        <div class="case-img-tag">PlayStation · Uninove · 2023</div>
+      </div>
+      <div>
+        <h3 class="case-title"><em>PlayStation</em><br>no BBB</h3>
+        <div class="case-brand">PlayStation · Uninove</div>
+        <div class="case-section">
+          <div class="case-section-title">O contexto</div>
+          <p class="case-text">Proposta de campanha integrando a marca PlayStation ao BBB — o maior reality show do Brasil — desenvolvida durante a graduação em Marketing e Publicidade.</p>
+        </div>
+        <div class="case-section">
+          <div class="case-section-title">A estratégia</div>
+          <p class="case-text">[Aguardando detalhes do conceito para completar este campo.]</p>
+        </div>
+        <div class="case-result">
+          <div class="case-result-title">Por que importa</div>
+          <div class="case-result-text">Demonstra pensamento estratégico de marca, integração de mídia em grande escala e capacidade de criar conceitos com alcance nacional.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="numeros">
+  <div class="numeros-top r">
+    <div class="numeros-heading">O que ficou pelo caminho.</div>
+    <div class="numeros-note">dados confirmados</div>
+  </div>
+  <div class="numeros-grid r">
+    <div class="num-col">
+      <div class="num-val">80+</div>
+      <div class="num-desc">disparos mensais<br>e-mail · SMS · WhatsApp</div>
+    </div>
+    <div class="num-col">
+      <div class="num-val">30+</div>
+      <div class="num-desc">treinamentos<br>conduzidos</div>
+    </div>
+    <div class="num-col">
+      <div class="num-val">450+</div>
+      <div class="num-desc">pessoas capacitadas<br>15+ por sessão</div>
+    </div>
+    <div class="num-col">
+      <div class="num-val">7</div>
+      <div class="num-desc">pessoas<br>lideradas</div>
+    </div>
+  </div>
+</div>
+
+<section id="trajetoria">
+  <div class="section-label r" style="margin-bottom: 48px;">Experiência profissional</div>
+  <div class="traj-layout">
+    <div class="traj-left">
+      <h2 class="traj-left-title r">De onde<br>vim, o que<br><em>ficou.</em></h2>
+      <p class="traj-left-text r d1">Comecei no operacional e fui construindo <strong>visão estratégica na prática</strong> — passando por e-commerce, marketing, CRM e conteúdo em ambientes onde essas áreas precisam conversar entre si.</p>
+    </div>
+    <div class="traj-list">
+      <div class="traj-row r">
+        <div class="traj-period">
+          <div class="traj-period-text">Dez 2025<br>Presente</div>
+          <div class="traj-company">Confidencial</div>
+        </div>
+        <div>
+          <div class="traj-role">Analista de CRM Pleno</div>
+          <div class="traj-tags">
+            <span class="traj-tag">CRM</span><span class="traj-tag">Retenção</span><span class="traj-tag">Jornadas</span><span class="traj-tag">Automação</span>
+          </div>
+        </div>
+      </div>
+      <div class="traj-row r">
+        <div class="traj-period">
+          <div class="traj-period-text">Jul 2025<br>Dez 2025</div>
+          <div class="traj-company">Porto</div>
+        </div>
+        <div>
+          <div class="traj-role">Redatora de Conteúdo SEO</div>
+          <div class="traj-tags">
+            <span class="traj-tag">SEO</span><span class="traj-tag">Conteúdo</span><span class="traj-tag">On-page</span><span class="traj-tag">Inbound</span>
+          </div>
+        </div>
+      </div>
+      <div class="traj-row r">
+        <div class="traj-period">
+          <div class="traj-period-text">Abr 2025<br>Jul 2025</div>
+          <div class="traj-company">HIST</div>
+        </div>
+        <div>
+          <div class="traj-role">Analista de E-commerce</div>
+          <div class="traj-tags">
+            <span class="traj-tag">Google Ads</span><span class="traj-tag">Meta Ads</span><span class="traj-tag">CRM</span><span class="traj-tag">A/B</span><span class="traj-tag">Landing Pages</span>
+          </div>
+        </div>
+      </div>
+      <div class="traj-row r">
+        <div class="traj-period">
+          <div class="traj-period-text">Jul 2024<br>Jan 2025</div>
+          <div class="traj-company">Grupo Veper</div>
+        </div>
+        <div>
+          <div class="traj-role">Analista de Marketing</div>
+          <div class="traj-tags">
+            <span class="traj-tag">E-mail Mkt</span><span class="traj-tag">Eventos</span><span class="traj-tag">SEO</span><span class="traj-tag">Relatórios</span>
+          </div>
+        </div>
+      </div>
+      <div class="traj-row r">
+        <div class="traj-period">
+          <div class="traj-period-text">Jun 2021<br>Fev 2024</div>
+          <div class="traj-company">Ideal Trends</div>
+        </div>
+        <div>
+          <div class="traj-role">CS · Suporte · Assessora de Imprensa</div>
+          <div class="traj-tags">
+            <span class="traj-tag">Liderança</span><span class="traj-tag">CRM</span><span class="traj-tag">SEO</span><span class="traj-tag">Treinamento</span>
+          </div>
+        </div>
+      </div>
+      <div class="traj-row r">
+        <div class="traj-period">
+          <div class="traj-period-text">Jul 2020<br>Jun 2021</div>
+          <div class="traj-company">Cofig</div>
+        </div>
+        <div>
+          <div class="traj-role">Assistente de Marketing e Comunicação</div>
+          <div class="traj-tags">
+            <span class="traj-tag">Redes Sociais</span><span class="traj-tag">Trade Mkt</span><span class="traj-tag">Automação</span>
+          </div>
+        </div>
+      </div>
+      <div class="traj-row r">
+        <div class="traj-period">
+          <div class="traj-period-text">Out 2019<br>Mai 2020</div>
+          <div class="traj-company">Shoes2go</div>
+        </div>
+        <div>
+          <div class="traj-role">Assistente de E-commerce e Marketing Digital</div>
+          <div class="traj-tags">
+            <span class="traj-tag">E-commerce</span><span class="traj-tag">Fotografia</span><span class="traj-tag">Redes Sociais</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label r" style="color: rgba(255,255,255,.28); margin-bottom: 48px;">O que fica na mesa</div>
+  <div class="skills-layout r">
+    <div>
+      <h2 class="skills-left-title">Ferramentas<br><em>e domínios.</em></h2>
+      <p class="skills-left-text">O conjunto técnico construído ao longo de 5 anos conectando conteúdo, CRM e performance em ambientes reais.</p>
+    </div>
+    <div class="skills-cols">
+      <div>
+        <div class="skill-group-title">SEO &amp; Conteúdo</div>
+        <div class="skill-row"><span class="skill-name">Otimização on-page</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Planejamento editorial</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Pesquisa de palavras-chave</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Link building</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Copywriting</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+      </div>
+      <div>
+        <div class="skill-group-title">CRM &amp; Automação</div>
+        <div class="skill-row"><span class="skill-name">E-mail marketing</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Fluxos de automação</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Segmentação de base</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Testes A/B</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">SMS &amp; WhatsApp</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+      </div>
+      <div>
+        <div class="skill-group-title">Performance &amp; Mídia</div>
+        <div class="skill-row"><span class="skill-name">Google Ads</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Meta Ads</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">LinkedIn Ads</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Google Analytics</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot off"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Relatórios estratégicos</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="formacao">
+  <div class="form-layout">
+    <div>
+      <h2 class="form-title r">Formação<br><em>acadêmica.</em></h2>
+      <div class="form-entry r">
+        <div class="form-course">Gestão de Negócios Digitais (CST)</div>
+        <div class="form-school">Universidade Anhembi Morumbi</div>
+        <div class="form-period">Ago 2025 — Jul 2027 · Em andamento</div>
+      </div>
+      <div class="form-entry r">
+        <div class="form-course">Tecnólogo em Marketing</div>
+        <div class="form-school">Uninove</div>
+        <div class="form-period">Jan 2021 — Dez 2022 · Concluído</div>
+      </div>
+      <div class="form-entry r">
+        <div class="form-course">Análise e Desenvolvimento de Sistemas</div>
+        <div class="form-school">Universidade Cruzeiro do Sul</div>
+        <div class="form-period">Jan 2023 — Out 2023</div>
+      </div>
+    </div>
+    <div class="r">
+      <div class="aside-label">Idiomas</div>
+      <div class="lang-row"><span class="lang-name">Português</span><span class="lang-level">Nativo</span></div>
+      <div class="lang-row"><span class="lang-name">Espanhol</span><span class="lang-level">Avançado</span></div>
+      <div class="lang-row"><span class="lang-name">Inglês</span><span class="lang-level">Intermediário</span></div>
+      <div class="aside-label">Certificações</div>
+      <div class="cert-row">Ciência de Dados no Mundo Real</div>
+      <div class="cert-row">Outbound Marketing</div>
+      <div class="cert-row">Marketing de Conteúdo</div>
+      <div class="cert-row">Copywriting</div>
+      <div class="cert-row">Cultura Digital</div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="contato-grid">
+    <h2 class="contato-heading r">
+      Vamos<br>
+      <em>conversar</em><br>
+      <strong>?</strong>
+    </h2>
+    <div class="contato-links r">
+      <a href="mailto:fernandeskethely@outlook.com" class="contato-link">
+        <div class="link-meta">
+          <div class="link-label">E-mail</div>
+          <div class="link-value">fernandeskethely@outlook.com</div>
+        </div>
+        <div class="link-arrow">&#8594;</div>
+      </a>
+      <a href="https://www.linkedin.com/in/kethely-fernandes-69169b210" target="_blank" class="contato-link">
+        <div class="link-meta">
+          <div class="link-label">LinkedIn</div>
+          <div class="link-value">Kethely Fernandes</div>
+        </div>
+        <div class="link-arrow">&#8594;</div>
+      </a>
+      <a href="https://wa.me/5511982298170" target="_blank" class="contato-link">
+        <div class="link-meta">
+          <div class="link-label">WhatsApp</div>
+          <div class="link-value">(11) 98229-8170</div>
+        </div>
+        <div class="link-arrow">&#8594;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">2025 · São Paulo, Brasil</span>
+  <span class="footer-sig">Kethely Fernandes</span>
+  <span class="footer-copy">CRM &amp; Marketing Digital</span>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.r').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
